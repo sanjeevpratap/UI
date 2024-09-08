@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .product-list {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .card {
+            flex: 0 0 20%; /* Show 5 products at a time (20% width each) */
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        #pname, #pprice {
+            margin: 10px 0;
+        }
+
+        #pcart {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #pcart:hover {
+            background-color: #0056b3;
+        }
+
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-arrow, .right-arrow {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            border: none;
+        }
+
+        .left-arrow:hover, .right-arrow:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/cart.html"  id="cart"> Cart</a>
+    <a href="/profile.html" id="profile">Profile</a>
+    <a href="/login.css" >LogOut</a>
+
+    <a href="/detail.html" id="detail"> Detail</a>
+
+ 
+    <div class="slider">
+        <div class="product-list" id="productList">
+            <!-- Cards for products will be generated here -->
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname1">Product 1</div>
+                <div id="pprice1">$10</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/200" alt="Product Image">
+                <div id="pname">Product 2</div>
+                <div id="pprice">$15</div>
+                <input type="submit" id="pcart" value="Add to Cart">
+            </div>
+            <!-- Repeat for more products -->
+        </div>
+    </div>
+
+    <div class="slider-controls">
+        <button class="left-arrow" onclick="slideLeft()">&#10094;</button>
+        <button class="right-arrow" onclick="slideRight()">&#10095;</button>
+    </div>
+</div>
+
+<script>
+    let currentPosition = 0;
+    const cardWidth = document.querySelector('.card').offsetWidth + 20; // Card width + margin
+    const totalProducts = 10;
+    const visibleProducts = 5;
+
+    function slideRight() {
+        if (currentPosition > -(totalProducts - visibleProducts) * cardWidth) {
+            currentPosition -= cardWidth;
+            document.getElementById('productList').style.transform = `translateX(${currentPosition}px)`;
+        }
+    }
+
+    function slideLeft() {
+        if (currentPosition < 0) {
+            currentPosition += cardWidth;
+            document.getElementById('productList').style.transform = `translateX(${currentPosition}px)`;
+        }
+    }
+</script>
+<script src="home.js"></script>
+</body>
+</html>

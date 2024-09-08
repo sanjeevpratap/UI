@@ -1,0 +1,66 @@
+
+.container{
+    background: rgb(123, 131, 99);
+display: flex;
+/* height: 100vh; */
+
+}
+
+h1{
+    text-align: center;
+}
+.lcard{
+    flex-basis: 60%;
+
+}
+
+.card{
+    flex-basis: 40%;
+    border-radius: 10px;
+    background-color: rgb(70, 70, 107);
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    
+}
+
+.form-box{
+    background-color: rgb(142, 145, 184);
+    /* padding: 20%; */
+    margin: 35% 5%;
+    border-radius: 10px;
+    /* height: 100vh; */
+}
+
+
+form{
+    /* background: red; */
+    padding: 20px;
+
+}
+
+label{
+    font-size: large;
+
+}
+
+input{
+    width: 100%;
+    padding: 5px 0;
+    margin-bottom: 10px;
+}
+
+#submit{
+    width: 30%;
+    margin:0 35%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#submit:hover{
+    background: green;
+}
+
+#submit:active{
+    background: red;
+}

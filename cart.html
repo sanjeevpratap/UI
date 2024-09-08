@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .cart-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .cart-total {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .checkout-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .checkout-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cart-container">
+    <h1>Your Shopping Cart</h1>
+    
+    <table id="cartTable">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="cartItems">
+            <!-- Cart items will be inserted dynamically here -->
+        </tbody>
+    </table>
+
+    <div class="cart-total">
+        <strong>Total Price: $<span id="totalPrice">0.00</span></strong>
+    </div>
+
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+</div>
+
+<script>
+    // Example cart array (you would get this from localStorage in a real scenario)
+    let cart = [
+        { pname: "Product 1", pprice: 20, quantity: 1 },
+        { pname: "Product 2", pprice: 15, quantity: 2 },
+    ];
+
+    // Function to display cart items
+    function displayCart() {
+        let cartTable = document.getElementById('cartItems');
+        cartTable.innerHTML = ''; // Clear current items
+        let totalPrice = 0;
+
+        cart.forEach((item, index) => {
+            let row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.pname}</td>
+                <td>$${item.pprice}</td>
+                <td>
+                    <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
+                </td>
+                <td>$${(item.pprice * item.quantity).toFixed(2)}</td>
+                <td><button onclick="removeItem(${index})">Remove</button></td>
+            `;
+            cartTable.appendChild(row);
+            totalPrice += item.pprice * item.quantity;
+        });
+
+        document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
+    }
+
+    // Function to update quantity
+    function updateQuantity(index, newQuantity) {
+        cart[index].quantity = newQuantity;
+        displayCart();
+    }
+
+    // Function to remove an item
+    function removeItem(index) {
+        cart.splice(index, 1);
+        displayCart();
+    }
+
+    // Function to handle checkout
+    function checkout() {
+        alert("Proceeding to checkout...");
+        // Add checkout logic here
+    }
+
+    // Initially display the cart
+    displayCart();
+</script>
+
+</body>
+</html>
